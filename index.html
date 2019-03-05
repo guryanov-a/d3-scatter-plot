@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FCC Bar Chart</title>
+</head>
+
+<body>
+<h1 id="title">Doping in Professional Bicycle Racing</h1>
+<h2>35 Fastest times up Alpe d'Huez</h2>
+
+<div id="plot-scatter" class="plot plot_type_scatter">
+  <ul id="legend" class="legend">
+    <li class="legend__item legend-item">
+      <span class="legend__dot"></span>
+      No doping allegations
+    </li>
+    <li class="legend__item legend-item">
+      <span class="legend__dot dot_background_red"></span>
+      Riders with doping allegations
+    </li>
+  </ul>
+  <div id="tooltip" class="tooltip plot__tooltip"></div>
+</div>
+
+<script defer src="./index.ts"></script>
+<script defer async src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>

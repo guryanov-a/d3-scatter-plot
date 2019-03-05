@@ -1,0 +1,68 @@
+.bar {
+  fill: rgb(51, 173, 255);
+
+  &:hover {
+    fill: navy;
+  }
+}
+
+.tooltip {
+  padding: 20px;
+  border: 1px solid black;
+  background: white;
+  display: none;
+
+  &_visibility {
+    &_visible {
+      display: block;
+    }
+  }
+}
+
+.plot {
+  &_type_scatter {
+    display: inline-block;
+    position: relative;
+
+    .tooltip {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 125px;
+      text-align: center;
+    }
+
+    .legend {
+      position: absolute;
+      right: 0;
+      top: 55px;
+    }
+  }
+}
+
+.dot {
+  display: inline-block;
+  fill-opacity: 0.5;
+  fill: green;
+  background: rgba(green, 0.5);
+  border: 1px solid black;
+  border-radius: 500rem;
+  stroke: black;
+  width: 10px;
+  height: 10px;
+
+  &_background_red {
+    fill: red;
+    background: rgba(red, 0.5);
+  }
+}
+
+.legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__dot {
+    @extend .dot;
+  }
+}

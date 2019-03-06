@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as d3 from "d3";
+import { format as formatDate } from 'date-fns';
 import './index.scss';
 
 const PLOT_DATA_PATH: string = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json";
@@ -126,25 +127,33 @@ function createScatterPlot(dataset) {
     .attr('r', 5)
     .attr('data-xvalue', (d) => d.year)
     .attr('data-yvalue', (d) => d.time);
-
-  let tooltip = document.getElementById('tooltip');
-  let tooltipDate: HTMLElement = document.createElement('h2');
-  tooltip.appendChild(tooltipDate);
-
   dotsD3.each(function(d) {
     this.classList.add('dot');
     if (d.doping) this.classList.add('dot_background_red');
   });
 
-  dotsD3.on('mouseenter', ({year, time}) => {
+  let tooltip: HTMLElement = document.getElementById('tooltip');
+  let tooltipPerson: HTMLElement = tooltip.querySelector('.plot-tooltip__person');
+  let tooltipRaceInfo: HTMLElement = tooltip.querySelector('.plot-tooltip__race-info');
+  let tooltipDoping: HTMLElement = tooltip.querySelector('.plot-tooltip__doping');
+
+  dotsD3.on('mouseenter', ({year, time, name, nationality, doping}) => {
     tooltip.classList.add('tooltip_visibility_visible');
     tooltip.style.left = `${scales.xScale(year) / (CHART_WIDTH / 100)}%`;
     tooltip.style.top = `${scales.yScale(time) / (CHART_HEIGHT / 100)}%`;
+    tooltip.dataset.year = year;
+    tooltipPerson.textContent = `${name}: ${nationality}`;
+    tooltipRaceInfo.textContent = `Year: ${year.getFullYear()}, Time: ${formatDate(time, 'MM:SS')}`;
+    tooltipDoping.textContent = doping;
   });
   dotsD3.on('mouseleave', () => {
     tooltip.classList.remove('tooltip_visibility_visible');
     tooltip.style.left = null;
     tooltip.style.top = null;
+    delete tooltip.dataset.dataYear;
+    tooltipPerson.textContent = null;
+    tooltipRaceInfo.textContent = null;
+    tooltipDoping.textContent = null;
   });
 
   return svg;

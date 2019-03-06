@@ -6,40 +6,6 @@
   }
 }
 
-.tooltip {
-  padding: 20px;
-  border: 1px solid black;
-  background: white;
-  display: none;
-
-  &_visibility {
-    &_visible {
-      display: block;
-    }
-  }
-}
-
-.plot {
-  &_type_scatter {
-    display: inline-block;
-    position: relative;
-
-    .tooltip {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      min-width: 125px;
-      text-align: center;
-    }
-
-    .legend {
-      position: absolute;
-      right: 0;
-      top: 55px;
-    }
-  }
-}
-
 .dot {
   display: inline-block;
   fill-opacity: 0.5;
@@ -64,5 +30,45 @@
 
   &__dot {
     @extend .dot;
+  }
+}
+
+.tooltip {
+  padding: 20px;
+  border: 1px solid black;
+  background: white;
+  display: none;
+
+  &_visibility {
+    &_visible {
+      display: block;
+    }
+  }
+}
+
+.plot {
+  &_type_scatter {
+    display: inline-block;
+    position: relative;
+
+    .legend {
+      position: absolute;
+      right: 0;
+      top: 55px;
+    }
+  }
+}
+
+.plot-tooltip {
+  position: absolute;
+  min-width: 150px;
+  text-align: center;
+
+  &__doping {
+    margin-top: 10px;
+
+    &:empty {
+      display: none;
+    }
   }
 }
